@@ -1,0 +1,135 @@
+#:import MDIconButton kivymd.uix.button.MDIconButton
+
+WindowManager:
+    WelcomeScreen:
+    SecondWindow:
+    CreateWindow:
+
+<WelcomeScreen>:
+    passw: password
+    name: "main"
+    id: main
+    MDCard:
+        size_hint: None, None
+        size: 300, 400
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+
+        MDLabel:
+            id: welcome_label
+            text: "WELCOME"
+            font_size: 40
+            halign: 'center'
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 15
+
+        MDTextField:
+            id: user
+            hint_text: "username"
+            icon_right: "account"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+        MDTextField:
+            id: password
+            hint_text: "password"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            password: True
+            icon_right: "eye-off"
+
+        MDRoundFlatButton:
+            text: "Don't have an Account? Create one"
+            font_size: 12
+            pos_hint: {"center_x": 0.5}
+            on_release:
+                app.root.current = "create"
+                root.manager.transition.direction = "left"
+
+        MDRoundFlatButton:
+            text: "LOG IN"
+            font_size: 12
+            pos_hint: {"center_x": 0.5}
+            on_press: app.logger(root.ids.user.text,root.ids.password.text)
+
+        MDRoundFlatButton:
+            text: "CLEAR"
+            font_size: 12
+            pos_hint: {"center_x": 0.5}
+            on_press: app.clear()
+
+        Widget:
+            size_hint_y: None
+            height: 10
+
+<SecondWindow>:
+    name: "second"
+    id: second
+    Button:
+        text: "Go Back"
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "right"
+
+<CreateWindow>:
+    name: "create"
+    id: create
+    MDCard:
+        size_hint: None, None
+        size: 300, 400
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+
+        MDLabel:
+            id: welcome_label
+            text: "WELCOME"
+            font_size: 40
+            halign: 'center'
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 15
+
+        MDTextField:
+            id: user
+            hint_text: "username"
+            icon_right: "account"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+
+        MDTextField:
+            id: password
+            hint_text: "password"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            password: True
+            icon_right: "eye-off"
+
+        MDRoundFlatButton:
+            text: "CREATE"
+            font_size: 12
+            pos_hint: {"center_x": 0.5}
+            on_press: app.create(root.ids.user.text,root.ids.password.text)
+
+        MDRoundFlatButton:
+            text: "CLEAR"
+            font_size: 12
+            pos_hint: {"center_x": 0.5}
+            on_press: app.clear()
+
+        Widget:
+            size_hint_y: None
+            height: 10
